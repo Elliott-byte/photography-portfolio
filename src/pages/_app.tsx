@@ -1,6 +1,6 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
-import {Expletus_Sans} from '@next/font/google'
+import {Expletus_Sans} from "next/font/google"
 
 const expletusSans = Expletus_Sans({
   subsets: ['latin'],
