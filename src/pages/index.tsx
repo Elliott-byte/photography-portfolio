@@ -3,6 +3,17 @@ import Link from 'next/link'
 import { Tab } from '@headlessui/react'
 import Masonry from 'react-masonry-css'
 import classNames from 'classnames'
+import type { LightGallery } from 'lightgallery/lightgallery'
+import LightGalleryComponent from 'lightgallery/react';
+
+// import styles
+import 'lightgallery/css/lightgallery.css';
+import 'lightgallery/css/lg-zoom.css';
+import 'lightgallery/css/lg-thumbnail.css';
+
+// import plugins if you need
+import lgThumbnail from 'lightgallery/plugins/thumbnail';
+import lgZoom from 'lightgallery/plugins/zoom';
 
 import bgImage from "../../public/photography-bg.jpg";
 import city1 from "../../public/city-1.jpeg";
@@ -10,6 +21,7 @@ import city2 from "../../public/city-2.jpeg";
 import city3 from "../../public/city-3.jpeg";
 import city4 from "../../public/city-4.jpeg";
 import city5 from "../../public/city-5.jpeg";
+import { useRef } from 'react';
 
 const tabs = [
   {
@@ -31,9 +43,12 @@ const images = [
   city3,
   city4,
   city5
-]
+];
 
 export default function Home() {
+
+  const lightboxRef = useRef<LightGallery | null>(null);
+
   return (
     <div className="h-full bg-top bg-cover overflow-auto">
       {/* <Head>
@@ -70,10 +85,33 @@ export default function Home() {
           <Tab.Panels className="h-[1700px] bg-stone-900 bg-opacity-20 max-w-[800px] w-full p-2 sm:p-4 my-6">
             <Tab.Panel >
               <Masonry breakpointCols={2} className='flex gap-2' columnClassName=''>
-                {images.map((image) => (
-                    <Image key={image.src} src={image} className='my-2' alt='citi1' />
+                {images.map((image, idx) => (
+                    <Image 
+                    key={image.src} 
+                    src={image} 
+                    className='my-4 hover:opacity-90 cursor-pointer' 
+                    alt='placerholder'
+                    placeholder='blur'
+                    onClick={() => {
+                      lightboxRef.current?.openGallery(idx);
+                    }}
+                    />
                 ))}
               </Masonry>
+
+              <LightGalleryComponent
+                onInit={(ref)=> {
+                  if (ref)
+                    lightboxRef.current = ref.instance;
+                }}
+                speed={500}
+                plugins={[lgThumbnail, lgZoom]}
+                dynamic
+                dynamicEl={images.map((image) => ({
+                  src: image.src,
+                  thumb: image.src
+                }))}
+            />
             </Tab.Panel>
             <Tab.Panel>Content 2</Tab.Panel>
             <Tab.Panel>Content 3</Tab.Panel>
