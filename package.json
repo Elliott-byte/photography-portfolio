@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@types/lqip-modern": "^1.1.2",
+    "@types/node-fetch": "^2.6.3",
     "add": "^2.0.6",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",

@@ -7,10 +7,10 @@ import bgImage from "../../public/photography-bg.jpg";
 
 import { GetStaticProps } from "next";
 import { createApi } from "unsplash-js";
-import nodeFetch from "node-fetch";
 import lqip from "lqip-modern";
 import { Photo } from "@/types/types";
 import { Gallery } from "@/components/Gallery";
+import nodeFetch from 'node-fetch';
 
 const tabs = [
   {

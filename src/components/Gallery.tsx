@@ -20,7 +20,7 @@ export function Gallery({ photos }: GalleryProps) {
     <>
       <Masonry breakpointCols={2} className="flex gap-2" columnClassName="">
         {photos.map((photo, idx) => (
-          <div className="relative">
+          <div className="relative" key={photo.src}>
             <Image
               key={photo.src}
               src={photo.src}
