@@ -10,7 +10,7 @@ import { createApi } from "unsplash-js";
 import lqip from "lqip-modern";
 import { Photo } from "@/types/types";
 import { Gallery } from "@/components/Gallery";
-import nodeFetch from 'node-fetch';
+import nodeFetch from "node-fetch";
 
 const tabs = [
   {
@@ -78,10 +78,10 @@ export default function Home({ oceans, cities }: HomeProps) {
           Get in touch
         </Link>
       </header>
-      <main className="relative pt-[60px] z-20">
-        <div className="flex flex-col items-center">
+      <main className="relative pt-[110px] z-20">
+        <div className="flex flex-col items-center h-full">
           <Tab.Group>
-            <Tab.List className="flex items-center gap-8">
+            <Tab.List className="flex items-center gap-12">
               {tabs.map((tab) => (
                 <Tab key={tab.key} className="p-4">
                   {({ selected }) => (
@@ -97,7 +97,7 @@ export default function Home({ oceans, cities }: HomeProps) {
                 </Tab>
               ))}
             </Tab.List>
-            <Tab.Panels className="h-[1700px] bg-stone-900 bg-opacity-20 max-w-[800px] w-full p-2 sm:p-4 my-6">
+            <Tab.Panels className="h-full h-full max-w-[900px] w-full p-1 sm:p-4 my-1">
               <Tab.Panel>
                 <Gallery photos={[...cities, ...oceans]} />
               </Tab.Panel>
@@ -111,7 +111,7 @@ export default function Home({ oceans, cities }: HomeProps) {
           </Tab.Group>
         </div>
       </main>
-      <footer className="relative h-[60px] flex justify-center uppercase text-lg font-medium z-20">
+      <footer className="relative h-[90px] flex justify-center items-center uppercase text-lg font-medium z-20">
         Photography Protfolio
       </footer>
     </div>
